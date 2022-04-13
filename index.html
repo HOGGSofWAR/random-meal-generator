@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Random User Generator</title>
+</head>
+
+<body>
+    <div class="food-gen" id="app">
+        <div class="food-gen__button-container">
+            <h1 class="food-gen__text food-gen__text--header">Random Meal Recipe Generator</h1>
+            <button v-on:click="getMeal()" class="food-gen__button" :class="">Generate meal</button>
+        </div>
+        <div v-if="!loading" class="food-gen__row food-gen__row--page">
+            <div class="food-gen__left">
+                <div class="food-gen__image">
+                    <img 
+                        :class="" 
+                        v-bind:src="picture" 
+                        :alt="meal" />
+                </div>
+                <div class="food-gen__row food-gen__row--links">
+                    <div class="food-gen__link-container">
+                        <a v-if="source" :href="source" target="_blank" class="food-gen__text food-gen__text--link">Link to source</a>
+                    </div>
+                    <div class="food-gen__link-container">
+                        <a v-if="youtube" :href="youtube" target="_blank" class="food-gen__text food-gen__text--link">Watch on youtube</a>
+                    </div>
+                </div>
+            </div>
+            <div class="food-gen__content">
+                <h1 class="food-gen__text food-gen__text--title">{{meal}}</h1>
+                <div class="food-gen__row">
+                    <p class="food-gen__text food-gen__text--category">{{area}}</p>
+                    <p class="food-gen__text food-gen__text--category">{{category}}</p>
+                </div>
+                <p class="food-gen__text food-gen__text--instructions">{{instructions}}</p>
+                <ul class="food-gen__ingredients">
+                    <li class="food-gen__ingredient" v-for="ingredient in this.ingredients"><span>&#8226</span>
+                        {{ ingredient.ingredient }}
+                        {{ ingredient.measure }}
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+        
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
